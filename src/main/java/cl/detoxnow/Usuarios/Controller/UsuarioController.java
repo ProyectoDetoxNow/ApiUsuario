@@ -1,13 +1,13 @@
-package cl.detoxnow.Usuarios.Controller;
+package cl.detoxnow.usuarios.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.detoxnow.Usuarios.DTO.UsuarioDTO;
-import cl.detoxnow.Usuarios.Model.Usuario;
-import cl.detoxnow.Usuarios.Service.UsuarioService;
+import cl.detoxnow.usuarios.dto.UsuarioDTO;
+import cl.detoxnow.usuarios.model.Usuario;
+import cl.detoxnow.usuarios.service.UsuarioService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
 

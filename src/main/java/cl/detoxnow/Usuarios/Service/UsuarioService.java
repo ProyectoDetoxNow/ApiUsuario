@@ -1,11 +1,11 @@
-package cl.detoxnow.Usuarios.Service;
+package cl.detoxnow.usuarios.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import cl.detoxnow.Usuarios.DTO.UsuarioDTO;
-import cl.detoxnow.Usuarios.Model.Usuario;
-import cl.detoxnow.Usuarios.Repository.UsuarioRepository;
+import cl.detoxnow.usuarios.dto.UsuarioDTO;
+import cl.detoxnow.usuarios.model.Usuario;
+import cl.detoxnow.usuarios.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service

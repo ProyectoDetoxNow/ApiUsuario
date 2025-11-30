@@ -1,4 +1,4 @@
-package cl.detoxnow.Usuarios.Config;
+package cl.detoxnow.usuarios.config;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.context.annotation.Bean;

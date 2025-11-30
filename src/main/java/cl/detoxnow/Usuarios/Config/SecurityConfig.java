@@ -1,4 +1,4 @@
-package cl.detoxnow.Usuarios.Config;
+package cl.detoxnow.usuarios.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

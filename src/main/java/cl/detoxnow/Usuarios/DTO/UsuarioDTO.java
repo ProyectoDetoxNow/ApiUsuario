@@ -1,4 +1,4 @@
-package cl.detoxnow.Usuarios.DTO;
+package cl.detoxnow.usuarios.dto;
 
 import lombok.Data;
 
