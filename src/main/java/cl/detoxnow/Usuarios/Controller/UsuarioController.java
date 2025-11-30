@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cl.detoxnow.usuarios.dto.LoginDTO;
+import cl.detoxnow.usuarios.dto.LoginResponse;
 import cl.detoxnow.usuarios.dto.UsuarioDTO;
 import cl.detoxnow.usuarios.model.Usuario;
 import cl.detoxnow.usuarios.service.UsuarioService;
@@ -56,5 +58,10 @@ public class UsuarioController {
     @DeleteMapping("/{correo}")
     public void eliminar(@PathVariable String correo) {
         usuarioService.eliminar(correo);
+    }
+
+    @PostMapping("/login")
+    public LoginResponse login(@RequestBody LoginDTO loginDTO) {
+        return usuarioService.login(loginDTO.getCorreo(), loginDTO.getPassword());
     }
 }

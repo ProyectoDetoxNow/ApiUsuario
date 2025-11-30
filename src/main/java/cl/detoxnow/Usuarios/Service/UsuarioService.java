@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import cl.detoxnow.usuarios.dto.LoginResponse;
 import cl.detoxnow.usuarios.dto.UsuarioDTO;
 import cl.detoxnow.usuarios.model.Usuario;
 import cl.detoxnow.usuarios.repository.UsuarioRepository;
@@ -75,4 +76,16 @@ public class UsuarioService {
         }
         repository.deleteById(correo);
     }
+
+    public LoginResponse login(String correo, String password) {
+
+        Usuario usuario = repository.findById(correo)
+            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        if (!encoder.matches(password, usuario.getPassword())) {
+            return new LoginResponse(false, "Contraseña incorrecta");
+        }
+        return new LoginResponse(true, "Login exitoso");
+    }
+
 }
