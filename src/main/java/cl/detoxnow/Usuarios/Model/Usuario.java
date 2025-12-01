@@ -16,7 +16,11 @@ import lombok.NoArgsConstructor;
 
 public class Usuario {
     
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
     @Column(name = "email", nullable = false, unique = true)
     private String correo;
 
