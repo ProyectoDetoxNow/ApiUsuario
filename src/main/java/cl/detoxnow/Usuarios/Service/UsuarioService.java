@@ -27,6 +27,7 @@ public class UsuarioService {
         }
 
         Usuario usuario = new Usuario(
+                null, // ID autogenerado
                 dto.getCorreo(),
                 dto.getNombre(),
                 encoder.encode(dto.getPassword()),
@@ -44,16 +45,26 @@ public class UsuarioService {
         return repository.findAll();
     }
 
-    // READ - por correo
-    public Usuario buscarPorCorreo(String correo) {
-        return repository.findById(correo)
+    // READ - buscar por ID
+    public Usuario buscar(Long id) {
+        return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     }
 
-    // UPDATE
-    public Usuario actualizar(String correo, UsuarioDTO dto) {
+    // READ - buscar por correo (para login y validaciones)
+    public Usuario buscarPorCorreo(String correo) {
+        Usuario usuario = repository.findByCorreo(correo);
+        if (usuario == null) {
+            throw new RuntimeException("Usuario no encontrado");
+        }
+        return usuario;
+    }
 
-        Usuario usuario = buscarPorCorreo(correo);
+    // UPDATE
+    public Usuario actualizar(Long id, UsuarioDTO dto) {
+
+        Usuario usuario = repository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         usuario.setNombre(dto.getNombre());
         usuario.setTelefono(dto.getTelefono());
@@ -61,7 +72,6 @@ public class UsuarioService {
         usuario.setRegion(dto.getRegion());
         usuario.setComuna(dto.getComuna());
 
-        // si viene password, actualizarla
         if (dto.getPassword() != null && !dto.getPassword().isBlank()) {
             usuario.setPassword(encoder.encode(dto.getPassword()));
         }
@@ -70,22 +80,22 @@ public class UsuarioService {
     }
 
     // DELETE
-    public void eliminar(String correo) {
-        if (!repository.existsById(correo)) {
-            throw new RuntimeException("No existe un usuario con ese correo");
+    public void eliminar(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Usuario no existe");
         }
-        repository.deleteById(correo);
+        repository.deleteById(id);
     }
 
+    // LOGIN
     public LoginResponse login(String correo, String password) {
 
-        Usuario usuario = repository.findById(correo)
-            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        Usuario usuario = buscarPorCorreo(correo);
 
         if (!encoder.matches(password, usuario.getPassword())) {
             return new LoginResponse(false, "Contraseña incorrecta");
         }
+
         return new LoginResponse(true, "Login exitoso");
     }
-
 }

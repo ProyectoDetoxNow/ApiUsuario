@@ -39,27 +39,28 @@ public class UsuarioController {
         return usuarioService.listar();
     }
 
-    // READ - por correo
-    @GetMapping("/{correo}")
-    public Usuario buscarPorCorreo(@PathVariable String correo) {
-        return usuarioService.buscarPorCorreo(correo);
+    // READ - por ID
+    @GetMapping("/{id}")
+    public Usuario buscar(@PathVariable Long id) {
+        return usuarioService.buscar(id);
     }
 
-    // UPDATE
-    @PutMapping("/{correo}")
+    // UPDATE - por ID
+    @PutMapping("/{id}")
     public Usuario actualizar(
-            @PathVariable String correo, 
+            @PathVariable Long id, 
             @RequestBody UsuarioDTO usuarioDTO) {
 
-        return usuarioService.actualizar(correo, usuarioDTO);
+        return usuarioService.actualizar(id, usuarioDTO);
     }
 
-    // DELETE
-    @DeleteMapping("/{correo}")
-    public void eliminar(@PathVariable String correo) {
-        usuarioService.eliminar(correo);
+    // DELETE - por ID
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        usuarioService.eliminar(id);
     }
 
+    // LOGIN
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginDTO loginDTO) {
         return usuarioService.login(loginDTO.getCorreo(), loginDTO.getPassword());
