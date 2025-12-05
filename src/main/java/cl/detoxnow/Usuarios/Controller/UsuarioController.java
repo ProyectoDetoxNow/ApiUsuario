@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;  
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import cl.detoxnow.usuarios.dto.LoginDTO;
@@ -31,8 +32,17 @@ import lombok.RequiredArgsConstructor;
         "https://ecomerceev2-git-preview-scarletjara-projects.vercel.app",
         "https://detoxnow.vercel.app"
     },
-    allowedHeaders = "*"
+    allowedHeaders = "*",
+    methods = {
+        RequestMethod.GET,
+        RequestMethod.POST,
+        RequestMethod.PUT,
+        RequestMethod.DELETE,
+        RequestMethod.OPTIONS
+    }
 )
+
+
 @RequiredArgsConstructor
 public class UsuarioController {
 
