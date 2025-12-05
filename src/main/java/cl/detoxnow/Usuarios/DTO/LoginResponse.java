@@ -1,9 +1,9 @@
 package cl.detoxnow.usuarios.dto;
 
-import cl.detoxnow.Usuarios.Model.Usuario;
+import cl.detoxnow.usuarios.model.Usuario;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -13,5 +13,4 @@ public class LoginResponse {
     private boolean success;
     private String mensaje;
     private Usuario usuario;
-    
 }
