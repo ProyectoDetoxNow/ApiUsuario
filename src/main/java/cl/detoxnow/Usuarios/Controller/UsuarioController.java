@@ -21,7 +21,18 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/usuarios")
-@CrossOrigin(origins = "*")
+@CrossOrigin(
+    origins = {
+        "http://localhost:3000",
+        "https://ecomerceev2.vercel.app",
+        "https://ecomerceev2-scarletjara-projects.vercel.app",
+        "https://ecomerceev2-git-main-scarletjara-projects.vercel.app",
+        "https://ecomerceev2-git-draft-pensive-moore-scarletjara-projects.vercel.app",
+        "https://ecomerceev2-git-preview-scarletjara-projects.vercel.app",
+        "https://detoxnow.vercel.app"
+    },
+    allowedHeaders = "*"
+)
 @RequiredArgsConstructor
 public class UsuarioController {
 
