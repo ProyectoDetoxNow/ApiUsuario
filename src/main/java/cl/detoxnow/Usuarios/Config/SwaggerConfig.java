@@ -4,17 +4,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 
 @Configuration
 public class SwaggerConfig {
 
     @Bean
-    public OpenAPI api() {
+    public OpenAPI customOpenAPI() {
         return new OpenAPI()
             .info(new Info()
-                .title("Usuarios API DetoxNow")
+                .title("API Usuario DetoxNow")
                 .version("1.0.0")
-                .description("API de registro de usuarios"));
+                .description("Documentación de la API desarrollada en Spring Boot")
+                .contact(new Contact()
+                    .name("Equipo Backend")
+                    .email("sc.jaraf@duocuc.cl"))
+            );
     }
 }
